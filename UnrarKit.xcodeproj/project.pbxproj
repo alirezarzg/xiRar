@@ -140,7 +140,7 @@
 		96A043DE1E4CC8D500BD7013 /* FirstVolumeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A043DD1E4CC8D500BD7013 /* FirstVolumeTests.m */; };
 		96A043E01E4D232F00BD7013 /* HasMultipleVolumesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A043DF1E4D232F00BD7013 /* HasMultipleVolumesTests.m */; };
 		96E5D345198B333200A74340 /* Test Data in Resources */ = {isa = PBXBuildFile; fileRef = 964C8AD018D28F1600AD7321 /* Test Data */; };
-		96EA537E1B3CB2C700F79DC6 /* URKFileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCD46A1A3262E5003612BF /* URKFileInfo.m */; };
+		96EA537E1B3CB2C700F79DC6 /* URKFileInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = F3FCD46A1A3262E5003612BF /* URKFileInfo.mm */; };
 		96EA53961B3CB2C700F79DC6 /* NSString+UnrarKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF7F81A3F72800033B759 /* NSString+UnrarKit.mm */; };
 		96EA53AC1B3CB2C700F79DC6 /* URKArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 489CFA0F128B5169005DCC2A /* URKArchive.mm */; };
 /* End PBXBuildFile section */
@@ -353,7 +353,7 @@
 		96F450781B385AF800679597 /* ListFilenamesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListFilenamesTests.m; sourceTree = "<group>"; };
 		96F4507A1B385BCD00679597 /* ExtractFilesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractFilesTests.m; sourceTree = "<group>"; };
 		F3FCD4691A3262E5003612BF /* URKFileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URKFileInfo.h; sourceTree = "<group>"; };
-		F3FCD46A1A3262E5003612BF /* URKFileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URKFileInfo.m; sourceTree = "<group>"; };
+		F3FCD46A1A3262E5003612BF /* URKFileInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = URKFileInfo.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,7 +431,7 @@
 				489CFA0E128B5169005DCC2A /* URKArchive.h */,
 				489CFA0F128B5169005DCC2A /* URKArchive.mm */,
 				F3FCD4691A3262E5003612BF /* URKFileInfo.h */,
-				F3FCD46A1A3262E5003612BF /* URKFileInfo.m */,
+				F3FCD46A1A3262E5003612BF /* URKFileInfo.mm */,
 				96BF58BA1F3A487100BC24E1 /* UnrarKitMacros.h */,
 				7A0668EC1FBBAA3100437F5F /* Supporting Files */,
 			);
@@ -984,7 +984,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96EA537E1B3CB2C700F79DC6 /* URKFileInfo.m in Sources */,
+				96EA537E1B3CB2C700F79DC6 /* URKFileInfo.mm in Sources */,
 				96EA53961B3CB2C700F79DC6 /* NSString+UnrarKit.mm in Sources */,
 				96EA53AC1B3CB2C700F79DC6 /* URKArchive.mm in Sources */,
 			);
