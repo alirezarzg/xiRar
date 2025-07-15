@@ -1,0 +1,22 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "main": []
+  "test": []
+  "xiRar-arm64-apple-macosx15.0-debug.module": ["<xiRar-arm64-apple-macosx15.0-debug.module>"]
+default: "main"
+nodes:
+  "/Users/alireza/Desktop/xiRar/Classes/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/alireza/Desktop/xiRar/Classes/","/Users/alireza/Desktop/xiRar/Package.swift","/Users/alireza/Desktop/xiRar/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

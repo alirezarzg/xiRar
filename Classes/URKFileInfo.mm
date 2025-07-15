@@ -6,7 +6,7 @@
 #import "URKFileInfo.h"
 #import "UnrarKitMacros.h"
 
-#import "NSString+UnrarKit.h"
+#import "Categories/NSString+UnrarKit.h"
 
 @implementation URKFileInfo
 
@@ -30,8 +30,8 @@
         _archiveName = [NSString stringWithUnichars:fileHeader->ArcNameW];
         _uncompressedSize = (long long) fileHeader->UnpSizeHigh << 32 | fileHeader->UnpSize;
         _compressedSize = (long long) fileHeader->PackSizeHigh << 32 | fileHeader->PackSize;
-        _compressionMethod = fileHeader->Method;
-        _hostOS = fileHeader->HostOS;
+        _compressionMethod = (URKCompressionMethod)fileHeader->Method;
+        _hostOS = (URKHostOS)fileHeader->HostOS;
         _timestamp = [self parseDOSDate:fileHeader->FileTime];
         _CRC = fileHeader->FileCRC;
 

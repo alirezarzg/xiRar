@@ -1,0 +1,4 @@
+module xiRar {
+    umbrella "/Users/alireza/Desktop/xiRar/Classes"
+    export *
+}

@@ -4,7 +4,8 @@ import PackageDescription
 let package = Package(
     name: "xiRar",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v13),
+        .macOS(.v10_15)
     ],
     products: [
         .library(name: "xiRar", targets: ["xiRar"])
@@ -14,6 +15,14 @@ let package = Package(
             name: "xiRar",
             path: "Classes",
             exclude: [
+                // Windows-specific files
+                "libunrar/isnt.cpp",
+                "libunrar/win32acl.cpp",
+                "libunrar/win32lnk.cpp",
+                "libunrar/win32stm.cpp",
+                "libunrar/secpassword.cpp",
+                
+                // Unused/unnecessary files
                 "libunrar/arccmt.cpp",
                 "libunrar/blake2sp.cpp",
                 "libunrar/cmdfilter.cpp",
@@ -39,9 +48,6 @@ let package = Package(
                 "libunrar/unpack50frag.cpp",
                 "libunrar/unpackinline.cpp",
                 "libunrar/uowners.cpp",
-                "libunrar/win32acl.cpp",
-                "libunrar/win32lnk.cpp",
-                "libunrar/win32stm.cpp",
                 "libunrar/blake2s_sse.cpp",
                 "libunrar/threadmisc.cpp",
                 "libunrar/uiconsole.cpp",
@@ -50,12 +56,23 @@ let package = Package(
             publicHeadersPath: ".",
             cSettings: [
                 .define("URK_DISABLE_LOGGING", to: "1"),
-                .headerSearchPath("libunrar")
+                .headerSearchPath("libunrar"),
+                .define("_UNIX"),
+                .define("_APPLE"),
+                .define("UNICODE"),
+                .define("_UNICODE")
             ],
             cxxSettings: [
                 .headerSearchPath("libunrar"),
                 .define("SILENT"),
-                .define("RARDLL")
+                .define("RARDLL"),
+                .define("_UNIX"),
+                .define("_APPLE"),
+                .define("UNICODE"),
+                .define("_UNICODE"),
+                .define("__APPLE__"),
+                .define("TARGET_OS_IPHONE", to: "1", .when(platforms: [.iOS])),
+                .define("TARGET_OS_OSX", to: "1", .when(platforms: [.macOS]))
             ]
         )
     ]
