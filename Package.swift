@@ -20,7 +20,6 @@ let package = Package(
                 "libunrar/win32acl.cpp",
                 "libunrar/win32lnk.cpp",
                 "libunrar/win32stm.cpp",
-                "libunrar/secpassword.cpp",
                 
                 // Unused/unnecessary files
                 "libunrar/arccmt.cpp",
