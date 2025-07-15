@@ -41,7 +41,11 @@ let package = Package(
                 "libunrar/uowners.cpp",
                 "libunrar/win32acl.cpp",
                 "libunrar/win32lnk.cpp",
-                "libunrar/win32stm.cpp"
+                "libunrar/win32stm.cpp",
+                "libunrar/blake2s_sse.cpp",
+                "libunrar/threadmisc.cpp",
+                "libunrar/uiconsole.cpp",
+                "libunrar/unpack50mt.cpp"
             ],
             publicHeadersPath: ".",
             cSettings: [
