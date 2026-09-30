@@ -600,7 +600,7 @@ NS_DESIGNATED_INITIALIZER
             result = NO;
         }
         
-        if (progressBlock) {
+        if (progressBlock && fileInfo) {
             progressBlock(fileInfo, 1.0);
         }
 
@@ -1160,6 +1160,10 @@ NS_DESIGNATED_INITIALIZER
                 RHCode = ERAR_SUCCESS;
                 break;
             }
+
+            if (RHCode == URKErrorCodeUndecodableFilename) {
+                break;
+            }
             
             if (filePath && ![fileInfo.filename isEqualToString:filePath]) continue;
             
@@ -1573,6 +1577,11 @@ int CALLBACK AllowCancellationCallbackProc(UINT msg, long UserData, long P1, lon
             detail = NSLocalizedStringFromTableInBundle(@"Provided password is incorrect", @"UnrarKit", _resources, @"Error detail string");
             break;
 
+        case URKErrorCodeUndecodableFilename:
+            errorName = @"ERAR_UNDECODABLE_FILENAME";
+            detail = NSLocalizedStringFromTableInBundle(@"A file name in the archive could not be read", @"UnrarKit", _resources, @"Error detail string");
+            break;
+
         case URKErrorCodeLargeDictionary:
             errorName = @"ERAR_LARGE_DICT";
             detail = NSLocalizedStringFromTableInBundle(@"Archive dictionary size exceeds the supported limit", @"UnrarKit", _resources, @"Error detail string");
@@ -1775,6 +1784,12 @@ int CALLBACK AllowCancellationCallbackProc(UINT msg, long UserData, long P1, lon
             break;
     }
     
+    if (result == URKReadHeaderLoopActionContinueReading && *info == nil) {
+        URKLogError("RAR header entry name could not be decoded");
+        *returnCode = URKErrorCodeUndecodableFilename;
+        result = URKReadHeaderLoopActionStopReading;
+    }
+
     if (result == URKReadHeaderLoopActionContinueReading
         && [self.lastFilepath isEqualToString:(*info).filename]
         && [self.lastArchivePath isEqualToString:(*info).archiveName])

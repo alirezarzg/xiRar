@@ -110,6 +110,8 @@ typedef NS_ENUM(NSInteger, URKErrorCode) {
      *  Error converting string to UTF-8
      */
     URKErrorCodeStringConversion = 103,
+
+    URKErrorCodeUndecodableFilename = 104,
 };
 
 typedef NSString *const URKProgressInfoKey;

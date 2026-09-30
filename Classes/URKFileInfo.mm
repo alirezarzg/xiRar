@@ -23,10 +23,16 @@
 {
     URKCreateActivity("Init URKFileInfo");
 
+    NSString *filename = [NSString stringWithUnichars:fileHeader->FileNameW];
+    if (!filename) {
+        URKLogError("File name could not be decoded");
+        return nil;
+    }
+
     if ((self = [super init])) {
         URKLogDebug("Setting file info fields");
         
-        _filename = [NSString stringWithUnichars:fileHeader->FileNameW];
+        _filename = filename;
         _archiveName = [NSString stringWithUnichars:fileHeader->ArcNameW];
         _uncompressedSize = (long long) fileHeader->UnpSizeHigh << 32 | fileHeader->UnpSize;
         _compressedSize = (long long) fileHeader->PackSizeHigh << 32 | fileHeader->PackSize;
