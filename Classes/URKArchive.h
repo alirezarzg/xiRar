@@ -93,7 +93,9 @@ typedef NS_ENUM(NSInteger, URKErrorCode) {
      *  The given password was incorrect
      */
     URKErrorCodeBadPassword = ERAR_BAD_PASSWORD,
-    
+
+    URKErrorCodeLargeDictionary = ERAR_LARGE_DICT,
+
     /**
      *  No data was returned from the archive
      */

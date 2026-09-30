@@ -1221,6 +1221,10 @@ int CALLBACK CallbackProc(UINT msg, long UserData, long P1, long P2) {
         case UCM_NEEDPASSWORD:
             URKLogDebug("msg: UCM_NEEDPASSWORD");
             break;
+
+        case UCM_LARGEDICT:
+            URKLogError("msg: UCM_LARGEDICT; refusing archive with unsupported dictionary size");
+            return -1;
     }
 
     return 0;
@@ -1229,6 +1233,11 @@ int CALLBACK CallbackProc(UINT msg, long UserData, long P1, long P2) {
 int CALLBACK BufferedReadCallbackProc(UINT msg, long UserData, long P1, long P2) {
     URKCreateActivity("BufferedReadCallbackProc");
     BOOL (^bufferedReadBlock)(NSData*) = (__bridge BOOL(^)(NSData*))(void *)UserData;
+
+    if (msg == UCM_LARGEDICT) {
+        URKLogError("msg: UCM_LARGEDICT; refusing archive with unsupported dictionary size");
+        return -1;
+    }
 
     if (msg == UCM_PROCESSDATA) {
         @autoreleasepool {
@@ -1248,6 +1257,11 @@ int CALLBACK BufferedReadCallbackProc(UINT msg, long UserData, long P1, long P2)
 int CALLBACK AllowCancellationCallbackProc(UINT msg, long UserData, long P1, long P2) {
     URKCreateActivity("AllowCancellationCallbackProc");
     BOOL (^shouldCancelBlock)() = (__bridge BOOL(^)())(void *)UserData;
+
+    if (msg == UCM_LARGEDICT) {
+        URKLogError("msg: UCM_LARGEDICT; refusing archive with unsupported dictionary size");
+        return -1;
+    }
 
     if (!shouldCancelBlock) {
         return 0;
@@ -1557,6 +1571,11 @@ int CALLBACK AllowCancellationCallbackProc(UINT msg, long UserData, long P1, lon
             URKLogError("If you're seeing this, you should be calling -[URKArchive validatePassword] before attempting to extract from a password-protected archive");
             errorName = @"ERAR_BAD_PASSWORD";
             detail = NSLocalizedStringFromTableInBundle(@"Provided password is incorrect", @"UnrarKit", _resources, @"Error detail string");
+            break;
+
+        case URKErrorCodeLargeDictionary:
+            errorName = @"ERAR_LARGE_DICT";
+            detail = NSLocalizedStringFromTableInBundle(@"Archive dictionary size exceeds the supported limit", @"UnrarKit", _resources, @"Error detail string");
             break;
 
         default:
